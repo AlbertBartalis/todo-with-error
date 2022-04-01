@@ -1,0 +1,99 @@
+.heading-section{
+    background: linear-gradient(to right,rgb(2,228,171),rgb(74,215,240));
+    padding: 120px;
+    h1.title{
+        font-weight: bold;
+        color:wheat;
+    }
+}
+.container{
+    max-width: 800px;  
+}
+.add-todo-box{
+    padding: 25px;
+    background: white;
+    border-radius: 4px;
+    margin-top: -68px;
+    box-shadow: 0 4px 12px rgb(black,0.08);
+}
+
+.todo-item{
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    padding: 35px 15px;
+    border-bottom: 1px solid #f2f3f5;
+    cursor: pointer;   
+    &.completed{
+        color:#aaa;
+    }
+    position: relative;
+}
+.todo-item .check-box{
+    display: flex;
+    border: 2px solid #eee;
+    border-radius: 50%; // face cercul
+    height: 28px; // ajutor pt cer h==w
+    width: 28px;
+    transition: background-color 0.2s;
+    margin-right: 20px;
+    i.material-icons{
+        font-size: 20px;
+        margin: auto;
+        opacity:0;
+        color:black;
+        transition: opacity 0.2;
+    }
+
+    
+}
+
+.todo-item:hover .check-box{ // customizez perechea tex si bifa, cand fac hover peste text sau casuta se va vedea bifa in cerc
+    background: #eee;
+    i.material-icons{
+        opacity: 0.28;
+    }
+}
+.todo-item.completed .check-box{
+    background: green;
+    color:black;
+    i.material-icons{
+        opacity: 1;
+    } 
+}
+.todo-item .todo-controls-box{
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    display: flex; // elementele sunt una langa 
+    opacity: 0;
+    display: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    transition: opacity 0.2, visibility 0.2s, transform 0.2s; 
+}
+.todo-item:hover .todo-controls-box{
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.4s;
+    transform: translateY(2px);
+}
+.todo-controls-box .todo-control-button{
+    background: #eee;
+    padding: 7px 10px;
+    display: flex;
+    i.material-icons{
+        font:20px;
+    }
+    &:hover{
+        background: grey;
+    }
+    &:first-of-type{
+        border-top-left-radius: 7px;
+    }
+    &:last-of-type{
+        border-top-right-radius: 7px;
+    }
+}
+.todo-controls-box .todo-control-button.is-danger:active i.material-icons{
+color:rgb(155, 27, 27); 
+}
