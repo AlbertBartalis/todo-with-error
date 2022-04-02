@@ -5,19 +5,28 @@
 
 <div class="container">
     <div class="add-todo-box">
-        <form #form="ngForm">
+        <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
             <h2 class="title is-5"> New task </h2>
-            <div class="field is-grouped">
+            <div class="field is-grouped" style="margin: 0">
                 <p class="control is-expanded">
-                  <input class="input" type="text" placeholder="Find a repository">
+                  <input ngModel #todoTextField="ngModel" required minlength="2" name="text" class="input" type="text" placeholder="Find a repository">
                 </p>
                 <p class="control">
-                  <button class="button alt-gradient-button">
+                  <button type="submit" class="button alt-gradient-button">
                     <i class="material-icons">add</i>
                     Add Task
                   </button>
                 </p>
               </div>
+              
+              <!-- nu merge din cauza la error 
+              <div *ngIf="todoTextField.invalid && showValidationErros">
+              <p class="help is-danger" *ngIf="todoTextField.errors.">Please enter a text of your todo</p>
+              <p class="help is-danger" *ngIf="todoTextField.errors.minlenght">Todo text must be at least 2 characters long</p>
+            </div>
+              -->
+              <p class="help is-danger" *ngIf="todoTextField.invalid">Please enter a text of your todo</p>
+              <p class="help is-danger" *ngIf="todoTextField.invalid">Todo text must be at least 2 characters long</p>
         </form>
     
     </div>
@@ -25,12 +34,12 @@
 <section class="section">
   <div class="container">
     <div class="todos-list">
-      <div class="todo-item" *ngFor="let todo of todos"[class.completed="todo.completed"]>
+      <div class="todo-item" *ngFor="let todo of todos"[class.completed]="todo.completed">
         <div class="check-box">
           <i class="material-icons">check</i>
         </div>
         <div class="todo-text">
-         {{todo.text }}
+         {{ todo.text }}
         </div>
         
         
@@ -44,6 +53,9 @@
         </div>
 
       </div>
+
+
+
     </div>
 
     
