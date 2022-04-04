@@ -35,7 +35,7 @@
     border-radius: 50%; // face cercul
     height: 28px; // ajutor pt cer h==w
     width: 28px;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, border-color 0.2s;
     margin-right: 20px;
     i.material-icons{
         font-size: 20px;
@@ -94,6 +94,14 @@
         border-top-right-radius: 7px;
     }
 }
-.todo-controls-box .todo-control-button.is-danger:active i.material-icons{
+.todo-controls-box .todo-control-button.is-danger:hover i.material-icons{
 color:rgb(155, 27, 27); 
+}
+.todo-controls-box .todo-control-button.is-danger:active i.material-icons{
+    color:rgb(212, 54, 54); 
+}
+.add-todo-box-container{
+    position: sticky;
+    top:0; 
+    z-index: 1;
 }

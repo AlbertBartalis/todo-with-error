@@ -1,9 +1,38 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@AlbertBartalis 
+AlbertBartalis
+/
+todo-list-partially
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+todo-list-partially/src/app/todos/todos.component.html
+@AlbertBartalis
+AlbertBartalis Todo list partially done
+Latest commit 1e3f1a8 12 hours ago
+ History
+ 1 contributor
+63 lines (51 sloc)  2.14 KB
+   
 <section class="heading-section">
     <h1 class="title is-1 has-text-centered">Albert ToDo`s List</h1>
 </section>
 
 
-<div class="container">
+<div class="container add-todo-box-container">
     <div class="add-todo-box">
         <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
             <h2 class="title is-5"> New task </h2>
@@ -19,22 +48,22 @@
                 </p>
               </div>
               
-              <!-- nu merge din cauza la error 
+              
               <div *ngIf="todoTextField.invalid && showValidationErros">
-              <p class="help is-danger" *ngIf="todoTextField.errors.">Please enter a text of your todo</p>
-              <p class="help is-danger" *ngIf="todoTextField.errors.minlenght">Todo text must be at least 2 characters long</p>
-            </div>
-              -->
+                <p class="help is-danger" *ngIf="todoTextField.errors?.['required']">Please enter a text of your todo</p>
+                <p class="help is-danger" *ngIf="todoTextField.errors?.['minlength']">Todo text must be at least 2 characters long</p>
+              </div>
+              <!--
               <p class="help is-danger" *ngIf="todoTextField.invalid">Please enter a text of your todo</p>
               <p class="help is-danger" *ngIf="todoTextField.invalid">Todo text must be at least 2 characters long</p>
-        </form>
-    
+                -->
+            </form>
     </div>
 </div>
 <section class="section">
   <div class="container">
     <div class="todos-list">
-      <div class="todo-item" *ngFor="let todo of todos"[class.completed]="todo.completed">
+      <div class="todo-item" (click)="onTodoClicked(todo)" *ngFor="let todo of todos"  [class.completed]="todo.completed">
         <div class="check-box">
           <i class="material-icons">check</i>
         </div>
@@ -43,11 +72,11 @@
         </div>
         
         
-        <div class="todo-controls-box">
-          <div class="todo-control-button">
+        <div class="todo-controls-box" (click)="$event.stopPropagation()">
+          <div class="todo-control-button" #editBtn (click)="EditTodo(todo)">
             <i class="material-icons">edit</i>
           </div>
-          <div class="todo-control-button is-danger">
+          <div class="todo-control-button is-danger" (click)="onDeleteClicked(todo)">
             <i class="material-icons">delete</i>
           </div>
         </div>
